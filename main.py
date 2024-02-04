@@ -27,7 +27,7 @@ def get_repo_file_info(repo, csv_writer):
 
 
 def main():
-    access_token = "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"
+    access_token = "Your Token"
     g = Github(access_token)
     user = g.get_user()
 
