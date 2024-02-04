@@ -17,13 +17,13 @@ def process_repo_contents(contents, repo, csv_writer):
 
 def get_repo_file_info(repo, csv_writer):
     try:
-        # Получаем содержимое корневой папки репозитория
+        # Get the contents of the root folder of the repository
         contents = repo.get_contents("")
-        # Обрабатываем содержимое рекурсивно
+        # Processing the content recursively
         process_repo_contents(contents, repo, csv_writer)
 
     except Exception as e:
-        print(f"Ошибка при обработке репозитория {repo.name}: {e}")
+        print(f"Error processing the repository {repo.name}: {e}")
 
 
 def main():
@@ -31,7 +31,7 @@ def main():
     g = Github(access_token)
     user = g.get_user()
 
-    # Перебираем все репозитории пользователя
+    # Going through all the user's repositories
     with open("github.csv", "w", newline="") as csvfile:
         csv_writer = csv.writer(csvfile)
         csv_writer.writerow(["Repository", "Path", "File Name", "Code Length"])
