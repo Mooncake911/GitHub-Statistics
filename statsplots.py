@@ -36,7 +36,7 @@ def draw_plots(user, language, data, to_csv=True):
         st.plotly_chart(fig4, use_container_width=True)
 
     if to_csv:
-        filename = f'{user}_{language}.csv'
+        filename = f'progress/{user}_{language}.csv'
         if not os.path.exists(filename):
             df.to_csv(filename, index=False)
         with open(filename, "rb") as f:
