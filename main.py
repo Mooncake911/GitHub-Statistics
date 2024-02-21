@@ -49,7 +49,7 @@ def main():
     user = g.get_user()
 
     # Going through all the user's repositories
-    with open("progress/github.csv", "w", newline="") as csvfile:
+    with open("github.csv", "w", newline="") as csvfile:
         csv_writer = csv.writer(csvfile)
         csv_writer.writerow(["Repo", "Path", "File", "Lines of Code"])
 
