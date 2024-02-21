@@ -1,0 +1,12 @@
+Repo,Path,File,Lines of Code,Category
+5_complect,main.cpp,main.cpp,86,72-150
+7_complect,main.cpp,main.cpp,99,72-150
+Bellman-Ford-algorithm,algorithm_from_example.cpp,algorithm_from_example.cpp,73,72-150
+Bellman-Ford-algorithm,algorithm_with_input.cpp,algorithm_with_input.cpp,113,72-150
+Numerical-Integration,HPC_computing.cpp,HPC_computing.cpp,137,72-150
+Numerical-Integration,not_HPC_computing.cpp,not_HPC_computing.cpp,129,72-150
+OpenMPI_Practice,C++/matrixFox.cpp,matrixFox.cpp,305,227-305
+OpenMPI_Practice,C++/matrixStrip.cpp,matrixStrip.cpp,185,150-227
+OpenMPI_Practice,C++/message.cpp,message.cpp,127,72-150
+OpenMPI_Practice,C++/minmax.cpp,minmax.cpp,96,72-150
+OpenMPI_Practice,C++/scalar.cpp,scalar.cpp,108,72-150
