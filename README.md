@@ -1,4 +1,9 @@
 # GitHub-Statistics
-My goal was to find out the average length of my (.py) file. 
+Wellcome :)
 
-I didn't include (.ipynb) files in my research, because I'm convinced that these files should only contain graphical information (not the main working code).
+This is a small Streamlit app which represent your GitHub stats based on lines of code.\
+This only works for files that are in the main branch and in open repositories.
+
+<video src="Streamlit.mp4" controls> </video>
+
+Streamlit App: https://app-statistics-igcffvhsr7ytag9att6sht.streamlit.app
