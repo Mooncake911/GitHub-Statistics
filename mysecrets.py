@@ -67,7 +67,7 @@ def gitleaks_check_secrets(repo_path):
 
 def check_secrets(user, repository):
     repo_url = f'https://github.com/{user}/{repository}'
-    repo_path = f'repos/{repository}'
+    repo_path = f'repository/{repository}'
     clone_repo(repo_url, repo_path)
     secrets_path = gitleaks_check_secrets(repo_path)
     delete_repo(repo_path)
