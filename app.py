@@ -42,7 +42,7 @@ def renew_main_window():
         df = pd.read_csv(st.session_state.progress)
         st.empty().title(f'{st.session_state.user}')
         st.empty().info(f'Found {len(st.session_state.repos)} repositories.')
-        st.empty().info(f'Total Lines of {st.session_state.language}: {df['Lines of Code'].sum()}')
+        st.empty().info(f'Total Lines of {st.session_state.language}: {df["Lines of Code"].sum()}')
         draw_plots(df)
 
     if st.session_state.secrets:
