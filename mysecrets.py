@@ -56,7 +56,7 @@ def gitleaks_check_secrets(repo_path):
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
 
-    secrets_path = f'secrets/gitleaks_report_{repo_path.split('/')[-1]}.json'
+    secrets_path = f'secrets/gitleaks_report_{repo_path.split("/")[-1]}.json'
 
     try:
         scan_command = ["gitleaks_8.18.4_windows_x64/gitleaks.exe", "detect", "--source", repo_path,
