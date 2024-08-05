@@ -1,3 +1,4 @@
+import os
 import requests
 import streamlit as st
 import pandas as pd
@@ -46,6 +47,10 @@ def get_progress(user, language, repos):
         processing_message.code(f'Processing: {repo}')
         metrics_message.info(f'𝖳𝗈𝗍𝖺𝗅 𝖫𝗂𝗇𝖾𝗌 𝗈𝖿 {language}: {total_lines}')
         repo_metrics_message.success(f'𝖳𝗈𝗍𝖺𝗅 𝖱𝖾𝗉𝗈𝗌𝗂𝗍𝗈𝗋𝗂𝖾𝗌: {i}')
+
+    folder_path = "progress"
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
 
     df = pd.DataFrame(data, columns=['Repo', 'Path', 'File', 'Lines of Code'])
     filename = f'progress/{user}_{language}.csv'

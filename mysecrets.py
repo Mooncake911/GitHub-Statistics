@@ -52,6 +52,10 @@ def gitleaks_check_secrets(repo_path):
     """
     Check secrets with gitleaks.
     """
+    folder_path = "secrets"
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+
     secrets_path = f'secrets/gitleaks_report_{repo_path.split('/')[-1]}.json'
 
     try:
@@ -66,6 +70,10 @@ def gitleaks_check_secrets(repo_path):
 
 
 def check_secrets(user, repository):
+    folder_path = "repository"
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+
     repo_url = f'https://github.com/{user}/{repository}'
     repo_path = f'repository/{repository}'
     clone_repo(repo_url, repo_path)
