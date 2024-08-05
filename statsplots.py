@@ -1,12 +1,13 @@
-import os
-import base64
 import streamlit as st
 import plotly.express as px
 import pandas as pd
 
 
-def draw_plots(user, language, data, to_csv=True):
-    df = pd.DataFrame(data, columns=['Repo', 'Path', 'File', 'Lines of Code'])
+def draw_plots(df: pd.DataFrame):
+    if df.empty:
+        st.warning('No data available')
+        return
+
     st.dataframe(df)
 
     bins = pd.cut(df['Lines of Code'], bins=3)
@@ -34,12 +35,3 @@ def draw_plots(user, language, data, to_csv=True):
         fig4 = px.pie(df, names='Repo', values='Lines of Code', title='Lines of Code per Repository (Pie Chart)')
         fig4.update_traces(textposition='inside')
         st.plotly_chart(fig4, use_container_width=True)
-
-    if to_csv:
-        filename = f'progress/{user}_{language}.csv'
-        if not os.path.exists(filename):
-            df.to_csv(filename, index=False)
-        with open(filename, "rb") as f:
-            b64 = base64.b64encode(f.read()).decode()
-        href = f'<a href="data:file/csv;base64,{b64}" download="{filename}">Download</a>'
-        st.sidebar.markdown(href, unsafe_allow_html=True)
