@@ -1,14 +1,12 @@
-import os
 import json
 import base64
-import datetime
 import requests
 
 import streamlit as st
 import pandas as pd
 
 
-from configs import LANG_EXT, create_folders
+from configs import LANG_EXT, remove_old_files
 
 from mylines import get_progress
 from mysecrets import check_secrets
@@ -64,8 +62,6 @@ def init_states(user):
 
 
 def main():
-    st.session_state.setdefault('folders_created', create_folders())
-
     st.set_page_config(layout='wide')
     logo_url = 'https://raw.githubusercontent.com/NoDataFound/CMC/main/githublogo.png'
     st.sidebar.markdown(
@@ -124,27 +120,6 @@ def main():
     renew_main_window()
 
 
-def clean_progress_folder():
-    directory = os.path.dirname('progress')
-    current_time = datetime.datetime.now()
-
-    for filename in os.listdir(directory):
-        filepath = os.path.join(directory, filename)
-
-        if os.path.isfile(filepath):
-            creation_time = datetime.datetime.fromtimestamp(os.path.getctime(filepath))
-            time_difference = current_time - creation_time
-
-            if time_difference.total_seconds() > 3600:
-                os.remove(filepath)
-
-
 if __name__ == "__main__":
-    if 'time' not in st.session_state:
-        st.session_state.time = datetime.datetime.now()
-
-    elif (datetime.datetime.now() - st.session_state.time).total_seconds() > 3600:
-        st.session_state.time = datetime.datetime.now()
-        # clean_progress_folder() # TODO: it doesn't work
-
+    remove_old_files()
     main()
