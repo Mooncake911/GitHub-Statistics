@@ -24,7 +24,8 @@ def get_repos(user):
         return [r['name'] for r in repos.json()]
 
     except requests.exceptions.RequestException as e:
-        st.sidebar.error(e)
+        if user:
+            st.sidebar.error(e)
         return []
 
 
@@ -51,14 +52,14 @@ def renew_main_window():
 
 
 def init_states(user):
-    if not user:
-        st.session_state.repos = []
-    elif user != st.session_state.user:
+    if user and user == st.session_state.user:
+        pass
+    else:
         st.session_state.repos = get_repos(user)
-    st.session_state.language = None
-    st.session_state.progress = None
-    st.session_state.repository = None
-    st.session_state.secrets = None
+        st.session_state.language = None
+        st.session_state.progress = None
+        st.session_state.repository = None
+        st.session_state.secrets = None
 
 
 def main():

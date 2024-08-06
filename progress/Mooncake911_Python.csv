@@ -65,6 +65,7 @@ example-dvc-experiments,src/data_load.py,data_load.py,33
 example-dvc-experiments,src/data_split.py,data_split.py,38
 example-dvc-experiments,src/featurize.py,featurize.py,38
 example-dvc-experiments,src/train.py,train.py,113
+Face-recognation,main.py,main.py,248
 Game-Of-Life,main.py,main.py,100
 Generation-of-medical-data,Anonymity.py,Anonymity.py,88
 Generation-of-medical-data,CreateData.py,CreateData.py,51
@@ -74,8 +75,11 @@ Generation-of-medical-data,Parsing (unused)/parsing_illness.py,parsing_illness.p
 Generation-of-medical-data,different_functions/get_fun.py,get_fun.py,217
 Generation-of-medical-data,different_functions/input.py,input.py,110
 Generation-of-medical-data,different_functions/schedule.py,schedule.py,33
-GitHub-Statistics,app.py,app.py,177
-GitHub-Statistics,statsplots.py,statsplots.py,46
+GitHub-Statistics,app.py,app.py,126
+GitHub-Statistics,configs.py,configs.py,55
+GitHub-Statistics,mylines.py,mylines.py,55
+GitHub-Statistics,mysecrets.py,mysecrets.py,93
+GitHub-Statistics,statsplots.py,statsplots.py,38
 Heuristic_algorithms,main.py,main.py,62
 Heuristic_algorithms,methods/ant.py,ant.py,98
 Heuristic_algorithms,methods/genetic.py,genetic.py,181
