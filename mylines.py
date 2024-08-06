@@ -1,9 +1,8 @@
-import os
 import requests
 import streamlit as st
 import pandas as pd
 
-from configs import SKIP_FILES, LANG_EXT
+from configs import SKIP_FILES, LANG_EXT, PROGRESS_FOLDER
 
 
 def count_lines_in_repo(data, user, ext, repo, repo_lines=0, path=''):
@@ -48,12 +47,8 @@ def get_progress(user, language, repos):
         metrics_message.info(f'𝖳𝗈𝗍𝖺𝗅 𝖫𝗂𝗇𝖾𝗌 𝗈𝖿 {language}: {total_lines}')
         repo_metrics_message.success(f'𝖳𝗈𝗍𝖺𝗅 𝖱𝖾𝗉𝗈𝗌𝗂𝗍𝗈𝗋𝗂𝖾𝗌: {i}')
 
-    folder_path = "progress"
-    if not os.path.exists(folder_path):
-        os.makedirs(folder_path)
-
     df = pd.DataFrame(data, columns=['Repo', 'Path', 'File', 'Lines of Code'])
-    filename = f'progress/{user}_{language}.csv'
+    filename = f'{PROGRESS_FOLDER}/{user}_{language}.csv'
     df.to_csv(filename, index=False)
 
     return filename

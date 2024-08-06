@@ -1,8 +1,10 @@
 import os
 import subprocess
 import shutil
+import streamlit as st
 
 from git import Repo
+from configs import OS_TYPE, REPOSITORY_FOLDER, SECRETS_FOLDER
 
 
 def clone_repo(repo_url, repo_path):
@@ -52,15 +54,22 @@ def gitleaks_check_secrets(repo_path):
     """
     Check secrets with gitleaks.
     """
-    folder_path = "secrets"
-    if not os.path.exists(folder_path):
-        os.makedirs(folder_path)
-
-    secrets_path = f'secrets/gitleaks_report_{repo_path.split("/")[-1]}.json'
+    secrets_path = f'{SECRETS_FOLDER}/gitleaks_report_{repo_path.split("/")[-1]}.json'
 
     try:
-        scan_command = ["gitleaks_8.18.4_windows_x64/gitleaks.exe", "detect", "--source", repo_path,
-                        "--report-format", "json", "--report-path", secrets_path]
+        match OS_TYPE:
+            case "Windows":
+                scan_command = ["gitleaks/gitleaks_8.18.4_windows_x64/gitleaks.exe", "detect", "--source",
+                                repo_path, "--report-format", "json", "--report-path", secrets_path]
+            case "Linux":
+                scan_command = ["gitleaks/gitleaks_8.18.4_linux_x64/gitleaks", "detect", "--source",
+                                repo_path, "--report-format", "json", "--report-path", secrets_path]
+            case "Darwin":
+                scan_command = ["gitleaks/gitleaks_8.18.4_darwin_x64/gitleaks", "detect", "--source",
+                                repo_path, "--report-format", "json", "--report-path", secrets_path]
+            case _:
+                st.error(f"Unsupported OS: {OS_TYPE}")
+                raise EnvironmentError(f"Unsupported operating system: {OS_TYPE}")
         subprocess.run(scan_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     except Exception as e:
@@ -70,12 +79,8 @@ def gitleaks_check_secrets(repo_path):
 
 
 def check_secrets(user, repository):
-    folder_path = "repository"
-    if not os.path.exists(folder_path):
-        os.makedirs(folder_path)
-
     repo_url = f'https://github.com/{user}/{repository}'
-    repo_path = f'repository/{repository}'
+    repo_path = f'{REPOSITORY_FOLDER}/{repository}'
     clone_repo(repo_url, repo_path)
     secrets_path = gitleaks_check_secrets(repo_path)
     delete_repo(repo_path)

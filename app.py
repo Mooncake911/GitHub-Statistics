@@ -8,7 +8,7 @@ import streamlit as st
 import pandas as pd
 
 
-from configs import LANG_EXT
+from configs import LANG_EXT, create_folders
 
 from mylines import get_progress
 from mysecrets import check_secrets
@@ -64,6 +64,8 @@ def init_states(user):
 
 
 def main():
+    st.session_state.setdefault('folders_created', create_folders())
+
     st.set_page_config(layout='wide')
     logo_url = 'https://raw.githubusercontent.com/NoDataFound/CMC/main/githublogo.png'
     st.sidebar.markdown(
