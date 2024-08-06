@@ -4,7 +4,7 @@
     </a>
 </p>
 
-![](https://github.com/Mooncake911/GitHub-Statistics/blob/add/Streamlit.png)
+![](https://github.com/Mooncake911/GitHub-Statistics/blob/add/Streamlit.jpeg)
 
 ## Lines of Code Counter
 This is a small Streamlit app which represent your GitHub statistics based on lines of code.\
