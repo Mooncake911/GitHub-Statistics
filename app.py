@@ -63,7 +63,13 @@ def init_states(user):
 
 
 def main():
-    st.set_page_config(layout='wide')
+    st.set_page_config(
+        page_title="GutHub Statistics",
+        page_icon=":sparkles:",
+        layout="wide",
+        initial_sidebar_state="expanded"
+    )
+
     logo_url = 'https://raw.githubusercontent.com/NoDataFound/CMC/main/githublogo.png'
     st.sidebar.markdown(
         f"<div style='text-align: center'><img src='{logo_url}' width='40%'></div>",
