@@ -59,14 +59,19 @@ def gitleaks_check_secrets(repo_path):
     try:
         match OS_TYPE:
             case "Windows":
-                scan_command = ["gitleaks/gitleaks_8.18.4_windows_x64/gitleaks.exe", "detect", "--source",
-                                repo_path, "--report-format", "json", "--report-path", secrets_path]
+                gitleaks_path = "gitleaks/gitleaks_8.18.4_windows_x64/gitleaks.exe"
+                scan_command = [gitleaks_path, "detect", "--source", repo_path,
+                                "--report-format", "json", "--report-path", secrets_path]
             case "Linux":
-                scan_command = ["gitleaks/gitleaks_8.18.4_linux_x64/gitleaks", "detect", "--source",
-                                repo_path, "--report-format", "json", "--report-path", secrets_path]
+                gitleaks_path = "gitleaks/gitleaks_8.18.4_linux_x64/gitleaks"
+                subprocess.run(["chmod", "+x", gitleaks_path], check=True)
+                scan_command = [gitleaks_path, "detect", "--source", repo_path,
+                                "--report-format", "json", "--report-path", secrets_path]
             case "Darwin":
-                scan_command = ["gitleaks/gitleaks_8.18.4_darwin_x64/gitleaks", "detect", "--source",
-                                repo_path, "--report-format", "json", "--report-path", secrets_path]
+                gitleaks_path = "gitleaks/gitleaks_8.18.4_darwin_x64/gitleaks"
+                subprocess.run(["chmod", "+x", gitleaks_path], check=True)
+                scan_command = [gitleaks_path, "detect", "--source", repo_path,
+                                "--report-format", "json", "--report-path", secrets_path]
             case _:
                 st.error(f"Unsupported OS: {OS_TYPE}")
                 raise EnvironmentError(f"Unsupported operating system: {OS_TYPE}")
